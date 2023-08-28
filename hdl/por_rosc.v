@@ -80,10 +80,10 @@ module por_rosc #(parameter LENGTH=16) (
     // Frequency 4x1 MUX
     clkmux_4x1 CLKMUX (
         .rst_n(rst_n),
-        .clk1(clk_128mhz), 
-        .clk2(clk_64mhz), 
-        .clk3(clk_32mhz), 
-        .clk4(clk_16mhz),
+        .clk0(clk_128mhz), 
+        .clk1(clk_64mhz), 
+        .clk2(clk_32mhz), 
+        .clk3(clk_16mhz),
         .sel(freq_sel),
         .clko(clk_out)
     );
