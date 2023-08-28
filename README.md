@@ -13,9 +13,10 @@ All digital Clock and Reset Manager
 <img src="./docs/bd.png" alt= “” >
 
 ### Interfaces
-## Diagram
-<img src="./docs/MS_CLK_RST.svg" width="75%" alt= “BlackBox” >
-## Ports
+
+<img src="./docs/bb.svg" width="60%" alt= “BlackBox” >
+
+### Ports
 
 | Port name  | Direction | Type       | Description |
 | ---------- | --------- | ---------- | ----------- |
