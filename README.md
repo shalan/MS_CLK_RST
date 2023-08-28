@@ -21,7 +21,7 @@ All digital Clock and Reset Manager
 | Port name  | Direction | Type       | Description |
 | ---------- | --------- | ---------- | ----------- |
 | xclk0       | input     | wire       | External Clock 0    |
-| xclk0       | input     | wire       | External Clock 1    |
+| xclk1       | input     | wire       | External Clock 1    |
 | xrst_n     | input     | wire       | External Reset       |
 | sel_mux0 | input     | wire       | CLKMUX0 selection - 0:select ROSC 8MHz, 1:select CLMUX1 clock|
 | sel_mux1   | input     | wire       | CLKMUX1 selection - 0:ROSC; 1:xclk |
