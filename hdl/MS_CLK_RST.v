@@ -24,10 +24,12 @@
      - External Clock Monitor (fail-safe)
 */
 module MS_CLK_RST(
-    input   wire        xclk,       // External clock source
+    input   wire        xclk0,     // External clock source 0
+    input   wire        xclk1,     // External clock source 1
     input   wire        xrst_n,     // external reset
-    input   wire        sel_n_8mhz, // CLKMUX0 selection - 0: select ROSC 8MHz; 1: select xclk or ROSC (see sel_xclk)
-    input   wire        sel_xclk,   // CLKMUX1 selection - 0: ROSC; 1: xclk
+    input   wire        sel_mux0,   // CLKMUX0 selection - 0: select ROSC 8MHz; 1: select xclk or ROSC (see sel_xclk)
+    input   wire        sel_mux1,   // CLKMUX1 selection - 0: ROSC; 1: xclk
+    input   wire        sel_mux2,   // CLKMUX2 selection - 0: xclk_0, 1:xclk_1
     input   wire [1:0]  sel_rosc,   // ROSC Frequency: 00:128mh, 01:64mhz, 10:32mhz, 11:16mhz
     input   wire [1:0]  clk_div,    // Clock divider for the output of CLKMUX1: 1, 2, 4 and 8
     input   wire        por_fb_in,  // must be connected to por_fb_in externally
@@ -46,6 +48,15 @@ module MS_CLK_RST(
     wire    sxrst_n;
     reg     xclk_mon_rst_n;
 
+    wire    xclk;
+
+    clkmux_2x1 CLKMUX2 (
+        .rst_n(rst_n),
+        .clk0(xclk0), 
+        .clk1(xclk1), 
+        .sel(sel_mux2),
+        .clko(xclk)
+    );
 
     por_rosc PoR (
         .rst_n(rst_n),          
@@ -81,10 +92,10 @@ module MS_CLK_RST(
 
     clkmux_4x1 CLKMUX (
         .rst_n(rst_n),
-        .clk1(clk_mux1), 
-        .clk2(clk_2), 
-        .clk3(clk_4), 
-        .clk4(clk_8),
+        .clk0(clk_mux1), 
+        .clk1(clk_2), 
+        .clk2(clk_4), 
+        .clk3(clk_8),
         .sel(clk_div),
         .clko(clk_mux1_div)
     );
@@ -95,22 +106,22 @@ module MS_CLK_RST(
     
     clkmux_2x1 CLKMUX0 (
         .rst_n(rst_n),
-        .clk1(clk_8mhz), 
-        .clk2(clk_mux1_div), 
-        .sel(sel_n_8mhz),
+        .clk0(clk_8mhz), 
+        .clk1(clk_mux1_div), 
+        .sel(sel_mux0),
         .clko(clk)
     );
 
     clkmux_2x1 CLKMUX1 (
         .rst_n(rst_n),
-        .clk1(clk_rosc), 
-        .clk2(xclk), 
-        .sel(sel_xclk),
+        .clk0(clk_rosc), 
+        .clk1(xclk), 
+        .sel(sel_mux1),
         .clko(clk_mux1)
     );
 
     // XCLK monitor
-    wire enable_xclk_mon = sel_xclk & sel_n_8mhz;
+    wire enable_xclk_mon = sel_mux1 & sel_mux0;
 
     reg [8:0]   mon_cntr;
     always @(posedge clk_128mhz or negedge por_n)
