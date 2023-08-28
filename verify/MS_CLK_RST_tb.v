@@ -1,16 +1,19 @@
 module MS_CLK_RST_tb;
 
-    reg         xclk = 0;
+    reg         xclk0 = 0;
+    reg         xclk1 = 0;
     reg         xrst_n = 1;
-    reg         sel_n_8mhz;
-    reg         sel_xclk;
+    reg         sel_mux0;
+    reg         sel_mux1;
+    reg         sel_mux2;
     reg [1:0]   sel_rosc;
     reg [1:0]   clk_div;
     wire        clk;
     wire        rst_n;
     wire        por_n;
 
-    reg         xclk_stop = 0;
+    reg         xclk0_stop = 0;
+    reg         xclk1_stop = 1;
 
     initial begin
         $dumpfile("MS_CLK_RST_tb.vcd");
@@ -18,10 +21,12 @@ module MS_CLK_RST_tb;
     end
 
     MS_CLK_RST MUV (
-        .xclk(xclk),
+        .xclk0(xclk0),
+        .xclk1(xclk1),
         .xrst_n(xrst_n),
-        .sel_n_8mhz(sel_n_8mhz),
-        .sel_xclk(sel_xclk),
+        .sel_mux0(sel_mux0),
+        .sel_mux1(sel_mux1),
+        .sel_mux2(sel_mux2),
         .sel_rosc(sel_rosc),
         .clk_div(clk_div),
         .clk(clk),
@@ -29,9 +34,13 @@ module MS_CLK_RST_tb;
         .por_n(por_n)
 );
 
-    // xclk generator
+    // xclk0 generator
     // 25 MHz
-    always #20 xclk = !(xclk & ~xclk_stop);
+    always #20 xclk0 = !(xclk0 & ~xclk0_stop);
+
+    // xclk1 generator
+    // 10 MHz
+    always #50 xclk1 = !(xclk1 & ~xclk1_stop);
 
     // External Reset Generator
     event ext_rst;
@@ -43,9 +52,10 @@ module MS_CLK_RST_tb;
         
     always@(posedge clk or negedge rst_n)
         if(!rst_n) begin
-            sel_n_8mhz = 0;
+            sel_mux0 = 0;
             sel_rosc = 0;
-            sel_xclk = 0;
+            sel_mux1 = 0;
+            sel_mux2 = 0;
             clk_div = 2'b00;
         end
 
@@ -59,18 +69,18 @@ module MS_CLK_RST_tb;
 
         // switch to xclk
         @(posedge clk);
-        sel_xclk = 1;
-        sel_n_8mhz = 1;
+        sel_mux1 = 1;
+        sel_mux0 = 1;
         #2500;
 
         // switch to rosc
         @(posedge clk);
-        sel_n_8mhz = 0;     // back to 8mhz
-        sel_xclk = 0;       // select rosc
+        sel_mux0 = 0;     // back to 8mhz
+        sel_mux2 = 0;       // select rosc
         sel_rosc = 2'b11;    // sel rosc freq
         #250;
         @(posedge clk);
-        sel_n_8mhz = 1;     // sel rosc 
+        sel_mux0 = 1;     // sel rosc 
         #2500;
 
         // change the divider
@@ -91,15 +101,32 @@ module MS_CLK_RST_tb;
         
         // switch to xclk
         @(posedge clk);
-        sel_xclk <= 1;
-        sel_n_8mhz <= 1;
-
+        sel_mux1 <= 1;
+        sel_mux0 <= 1;
         #2000;
-        // stop the xclk
-        xclk_stop =  1;
-
-        #100_000;
         
+        // stop the xclk
+        xclk0_stop =  1;
+        #10_000;
+
+        // demonstrate switching between xclocks
+        @(posedge clk);
+        xclk0_stop =  0;
+        xclk1_stop =  0;
+        sel_mux1 = 1;
+        @(posedge clk);
+        sel_mux0 = 1;
+        #4_000;
+        @(posedge clk);
+        sel_mux2 = 1;
+        #4_000;
+
+        // stop both external clocks 
+        @(posedge clk);
+        xclk0_stop =  1;
+        xclk1_stop =  1;
+        #20_000;
+
         $finish;
 
     end
