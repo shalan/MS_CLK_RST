@@ -32,6 +32,8 @@ module MS_CLK_RST(
     input   wire        sel_mux2,   // CLKMUX2 selection - 0: xclk_0, 1:xclk_1
     input   wire [1:0]  sel_rosc,   // ROSC Frequency: 00:128mh, 01:64mhz, 10:32mhz, 11:16mhz
     input   wire [1:0]  clk_div,    // Clock divider for the output of CLKMUX1: 1, 2, 4 and 8
+    input   wire        zero,
+    input   wire        one,
     input   wire        por_fb_in,  // must be connected to por_fb_in externally
     output  wire        por_fb_out,
     output  wire        clk,        // syste, clock
@@ -39,8 +41,8 @@ module MS_CLK_RST(
     output  wire        por_n       // Power-on-Reset
 );
 
-    wire    tiehi = 1'b1;
-    wire    tielo = 1'b0;
+    //wire    tiehi = 1'b1;
+    //wire    tielo = 1'b0;
     wire    clk_pll;
     wire    clk_8mhz;
     wire    clk_128mhz;
@@ -61,8 +63,8 @@ module MS_CLK_RST(
     por_rosc PoR (
         .rst_n(rst_n),          
         .fb_in(por_fb_in),          
-        .zero(tielo),           
-        .one(tiehi),            
+        .zero(zero),           
+        .one(one),            
         .freq_sel(sel_rosc),       
         .clk_8mhz(clk_8mhz), 
         .clk_128mhz(clk_128mhz),       
