@@ -1,7 +1,4 @@
 ###############################################################################
-# Created by write_sdc
-# Tue Apr 25 10:55:41 2023
-###############################################################################
 current_design MS_CLK_RST
 ###############################################################################
 # Timing Constraints
@@ -16,7 +13,6 @@ set_false_path -from [get_ports {zero}]
 create_clock -name CLK -period 5 [get_pins {PoR.ROSC_CLKBUF_1/X}]
 #[get_ports fb_out]
 set_clock_uncertainty 0.100 CLK 
-
 set_propagated_clock [all_clocks]
 
 ###############################################################################
