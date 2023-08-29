@@ -133,6 +133,9 @@ module MS_CLK_RST(
     // xclk synchronizer & Edge detector
     reg[2:0] xclk_sync;
     always @(posedge clk_128mhz or negedge rst_n)
+    if(!rst_n)
+        xclk_sync <= 3'b000;
+    else
         xclk_sync <= {xclk_sync[1:0], xclk};
     wire xclk_edge = ~xclk_sync[2] & xclk_sync[1];
 
