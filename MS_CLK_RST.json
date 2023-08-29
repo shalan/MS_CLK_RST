@@ -9,7 +9,7 @@
         "email": "mshalan@aucegypt.edu",
         "version": "v1.0.0",
         "date": "1-1-2020",
-        "category": "1",
+        "category": "digital",
         "tags": [
             "clock",
             "reset",
@@ -19,7 +19,7 @@
         "bus": [
             "generic"
         ],
-        "type": "soft",
+        "type": "hard",
         "status": "verified",
         "cell_count": "730",
         "width": "0.0",
