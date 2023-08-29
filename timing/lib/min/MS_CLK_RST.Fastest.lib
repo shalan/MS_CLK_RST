@@ -1,0 +1,172 @@
+library (MS_CLK_RST) {
+  comment                        : "";
+  delay_model                    : table_lookup;
+  simulation                     : false;
+  capacitive_load_unit (1,pF);
+  leakage_power_unit             : 1pW;
+  current_unit                   : "1A";
+  pulling_resistance_unit        : "1kohm";
+  time_unit                      : "1ns";
+  voltage_unit                   : "1v";
+  library_features(report_delay_calculation);
+
+  input_threshold_pct_rise : 50;
+  input_threshold_pct_fall : 50;
+  output_threshold_pct_rise : 50;
+  output_threshold_pct_fall : 50;
+  slew_lower_threshold_pct_rise : 20;
+  slew_lower_threshold_pct_fall : 20;
+  slew_upper_threshold_pct_rise : 80;
+  slew_upper_threshold_pct_fall : 80;
+  slew_derate_from_library : 1.0;
+
+
+  nom_process                    : 1.0;
+  nom_temperature                : 100.0;
+  nom_voltage                    : 1.60;
+
+  lu_table_template(template_1) {
+    variable_1 : total_output_net_capacitance;
+    index_1 ("0.00050,  0.00182,  0.00666,  0.02431,  0.08873,  0.32384,  1.18196");
+  }
+  type ("clk_div") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 2;
+    bit_from : 1;
+    bit_to : 0;
+  }
+  type ("sel_rosc") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 2;
+    bit_from : 1;
+    bit_to : 0;
+  }
+
+  cell ("MS_CLK_RST") {
+    interface_timing : true;
+    pin("clk") {
+      direction : output;
+      capacitance : 0.0014;
+      timing() {
+        related_pin : "xclk0";
+        timing_sense : positive_unate;
+        timing_type : combinational;
+	cell_rise(template_1) {
+          values("2.82475,2.82994,2.84314,2.87743,2.96757,3.20909,3.84913");
+	}
+	rise_transition(template_1) {
+          values("0.01414,0.02089,0.03945,0.08919,0.22244,0.57296,1.51026");
+	}
+	cell_fall(template_1) {
+          values("3.15917,3.16296,3.17120,3.18948,3.23414,3.35202,3.66510");
+	}
+	fall_transition(template_1) {
+          values("0.01049,0.01375,0.02176,0.04227,0.09969,0.25265,0.66084");
+	}
+      }
+      timing() {
+        related_pin : "xclk1";
+        timing_sense : positive_unate;
+        timing_type : combinational;
+	cell_rise(template_1) {
+          values("2.81343,2.81863,2.83183,2.86612,2.95625,3.19778,3.83782");
+	}
+	rise_transition(template_1) {
+          values("0.01414,0.02089,0.03945,0.08919,0.22244,0.57296,1.51026");
+	}
+	cell_fall(template_1) {
+          values("3.12361,3.12740,3.13564,3.15392,3.19858,3.31646,3.62954");
+	}
+	fall_transition(template_1) {
+          values("0.01049,0.01375,0.02176,0.04227,0.09969,0.25265,0.66084");
+	}
+      }
+    }
+    pin("por_fb_in") {
+      direction : input;
+      capacitance : 0.0067;
+    }
+    pin("por_fb_out") {
+      direction : output;
+      capacitance : 0.0082;
+      timing() {
+        related_pin : "por_fb_in";
+        timing_sense : negative_unate;
+        timing_type : combinational;
+	cell_rise(template_1) {
+          values("6.25591,6.25798,6.26448,6.28322,6.34142,6.54711,7.29155");
+	}
+	rise_transition(template_1) {
+          values("0.01571,0.01741,0.02317,0.04391,0.12320,0.42070,1.51051");
+	}
+	cell_fall(template_1) {
+          values("6.39086,6.39277,6.39878,6.41429,6.45338,6.57322,7.00362");
+	}
+	fall_transition(template_1) {
+          values("0.01573,0.01708,0.02126,0.03350,0.07385,0.22842,0.81517");
+	}
+      }
+    }
+    pin("por_n") {
+      direction : output;
+      capacitance : 0.0005;
+    }
+    pin("rst_n") {
+      direction : output;
+      capacitance : 0.0007;
+    }
+    pin("sel_mux0") {
+      direction : input;
+      capacitance : 0.0032;
+    }
+    pin("sel_mux1") {
+      direction : input;
+      capacitance : 0.0029;
+    }
+    pin("sel_mux2") {
+      direction : input;
+      capacitance : 0.0031;
+    }
+    pin("xclk0") {
+      direction : input;
+      capacitance : 0.0028;
+    }
+    pin("xclk1") {
+      direction : input;
+      capacitance : 0.0035;
+    }
+    pin("xrst_n") {
+      direction : input;
+      capacitance : 0.0028;
+    }
+    bus("clk_div") {
+      bus_type : clk_div;
+      direction : input;
+      capacitance : 0.0000;
+    pin("clk_div[1]") {
+      direction : input;
+      capacitance : 0.0126;
+    }
+    pin("clk_div[0]") {
+      direction : input;
+      capacitance : 0.0161;
+    }
+    }
+    bus("sel_rosc") {
+      bus_type : sel_rosc;
+      direction : input;
+      capacitance : 0.0000;
+    pin("sel_rosc[1]") {
+      direction : input;
+      capacitance : 0.0030;
+    }
+    pin("sel_rosc[0]") {
+      direction : input;
+      capacitance : 0.0034;
+    }
+    }
+  }
+
+}
