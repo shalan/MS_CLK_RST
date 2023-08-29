@@ -1,0 +1,207 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO MS_CLK_RST
+  CLASS BLOCK ;
+  FOREIGN MS_CLK_RST ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 91.530 BY 102.250 ;
+  PIN clk
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.340600 ;
+    PORT
+      LAYER met3 ;
+        RECT 87.530 61.240 91.530 61.840 ;
+    END
+  END clk
+  PIN clk_div[0]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.747000 ;
+    PORT
+      LAYER met2 ;
+        RECT 29.070 98.250 29.350 102.250 ;
+    END
+  END clk_div[0]
+  PIN clk_div[1]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.373500 ;
+    PORT
+      LAYER met2 ;
+        RECT 74.150 0.000 74.430 4.000 ;
+    END
+  END clk_div[1]
+  PIN por_fb_in
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.576000 ;
+    PORT
+      LAYER met2 ;
+        RECT 54.830 98.250 55.110 102.250 ;
+    END
+  END por_fb_in
+  PIN por_fb_out
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.426000 ;
+    ANTENNADIFFAREA 1.590400 ;
+    PORT
+      LAYER met2 ;
+        RECT 0.090 0.000 0.370 4.000 ;
+    END
+  END por_fb_out
+  PIN por_n
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 51.040 4.000 51.640 ;
+    END
+  END por_n
+  PIN rst_n
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.383400 ;
+    PORT
+      LAYER met2 ;
+        RECT 22.630 0.000 22.910 4.000 ;
+    END
+  END rst_n
+  PIN sel_mux0
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 87.530 6.840 91.530 7.440 ;
+    END
+  END sel_mux0
+  PIN sel_mux1
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 23.840 4.000 24.440 ;
+    END
+  END sel_mux1
+  PIN sel_mux2
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 87.530 88.440 91.530 89.040 ;
+    END
+  END sel_mux2
+  PIN sel_rosc[0]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met2 ;
+        RECT 80.590 98.250 80.870 102.250 ;
+    END
+  END sel_rosc[0]
+  PIN sel_rosc[1]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met2 ;
+        RECT 48.390 0.000 48.670 4.000 ;
+    END
+  END sel_rosc[1]
+  PIN vccd1
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 21.040 10.640 22.640 90.000 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 51.040 10.640 52.640 90.000 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 81.040 10.640 82.640 90.000 ;
+    END
+  END vccd1
+  PIN vssd1
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER met4 ;
+        RECT 36.040 10.640 37.640 90.000 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 66.040 10.640 67.640 90.000 ;
+    END
+  END vssd1
+  PIN xclk0
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 78.240 4.000 78.840 ;
+    END
+  END xclk0
+  PIN xclk1
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met2 ;
+        RECT 3.310 98.250 3.590 102.250 ;
+    END
+  END xclk1
+  PIN xrst_n
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
+    PORT
+      LAYER met3 ;
+        RECT 87.530 34.040 91.530 34.640 ;
+    END
+  END xrst_n
+  OBS
+      LAYER li1 ;
+        RECT 5.520 10.795 85.560 89.845 ;
+      LAYER met1 ;
+        RECT 0.070 10.640 85.950 90.000 ;
+      LAYER met2 ;
+        RECT 0.100 97.970 3.030 99.010 ;
+        RECT 3.870 97.970 28.790 99.010 ;
+        RECT 29.630 97.970 54.550 99.010 ;
+        RECT 55.390 97.970 80.310 99.010 ;
+        RECT 81.150 97.970 85.930 99.010 ;
+        RECT 0.100 4.280 85.930 97.970 ;
+        RECT 0.650 4.000 22.350 4.280 ;
+        RECT 23.190 4.000 48.110 4.280 ;
+        RECT 48.950 4.000 73.870 4.280 ;
+        RECT 74.710 4.000 85.930 4.280 ;
+      LAYER met3 ;
+        RECT 4.000 89.440 87.530 89.925 ;
+        RECT 4.000 88.040 87.130 89.440 ;
+        RECT 4.000 79.240 87.530 88.040 ;
+        RECT 4.400 77.840 87.530 79.240 ;
+        RECT 4.000 62.240 87.530 77.840 ;
+        RECT 4.000 60.840 87.130 62.240 ;
+        RECT 4.000 52.040 87.530 60.840 ;
+        RECT 4.400 50.640 87.530 52.040 ;
+        RECT 4.000 35.040 87.530 50.640 ;
+        RECT 4.000 33.640 87.130 35.040 ;
+        RECT 4.000 24.840 87.530 33.640 ;
+        RECT 4.400 23.440 87.530 24.840 ;
+        RECT 4.000 7.840 87.530 23.440 ;
+        RECT 4.000 6.975 87.130 7.840 ;
+  END
+END MS_CLK_RST
+END LIBRARY
+
