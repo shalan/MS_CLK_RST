@@ -77,7 +77,8 @@ module MS_CLK_RST_ahbl (
 	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
-
+	wire  		por_fb_in;
+	wire  		por_fb_out;
 	MS_CLK_RST inst_to_wrap (
 		.xclk0(xclk0),
 		.xclk1(xclk1),
