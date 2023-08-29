@@ -17,13 +17,13 @@ module MS_CLK_RST_tb;
     reg         xclk1_stop = 1;
 
     initial begin
-        `ifdef VCS
-            $vcdplusfile("MS_CLK_RST_tb.vpd");
-		    $vcdpluson();
-	    `else 
+        // `ifdef VCS
+        //     $vcdplusfile("MS_CLK_RST_tb.vpd");
+		//     $vcdpluson();
+	    // `else 
             $dumpfile("MS_CLK_RST_tb.vcd");
             $dumpvars;
-        `endif
+        // `endif
     end
     
     `ifdef ENABLE_SDF
@@ -34,6 +34,8 @@ module MS_CLK_RST_tb;
 
     wire vssd1 = 0;
     wire vccd1 = 1;
+    wire fb_in;
+    wire fb_out;
     MS_CLK_RST MUV (
         `ifdef USE_POWER_PINS
             .vssd1(vssd1),
@@ -46,12 +48,16 @@ module MS_CLK_RST_tb;
         .sel_mux1(sel_mux1),
         .sel_mux2(sel_mux2),
         .sel_rosc(sel_rosc),
+        .zero(0),
+        .one(1),
         .clk_div(clk_div),
         .clk(clk),
         .rst_n(rst_n),
-        .por_n(por_n)
+        .por_n(por_n),
+        .por_fb_in(fb_in),
+        .por_fb_out(fb_out)
 );
-
+assign fb_in = fb_out;
     // xclk0 generator
     // 25 MHz
     always #20 xclk0 = !(xclk0 & ~xclk0_stop);
@@ -67,7 +73,175 @@ module MS_CLK_RST_tb;
         #(1000+$urandom & 12'hFFF);
         xrst_n = 1'b1;
     end
-        
+
+
+    `ifdef GL 
+    initial begin
+        force MUV.por_fb_in = 0;
+        force MUV.\PoR.shift_reg0[0] = 0;
+        force MUV.\PoR.shift_reg0[1] = 0;
+        force MUV.\PoR.shift_reg0[2] = 0;
+        force MUV.\PoR.shift_reg0[3] = 0;
+        force MUV.\PoR.shift_reg0[4] = 0;
+        force MUV.\PoR.shift_reg0[5] = 0;
+        force MUV.\PoR.shift_reg0[6] = 0;
+        force MUV.\PoR.shift_reg0[7] = 0;
+        force MUV.\PoR.shift_reg0[8] = 0;
+        force MUV.\PoR.shift_reg0[9] = 0;
+        force MUV.\PoR.shift_reg0[10] = 0;
+        force MUV.\PoR.shift_reg0[11] = 0;
+        force MUV.\PoR.shift_reg0[12] = 0;
+        force MUV.\PoR.shift_reg0[13] = 0;
+        force MUV.\PoR.shift_reg0[14] = 0;
+        force MUV.\PoR.shift_reg0[15] = 0;
+
+        force MUV.\PoR.shift_reg1[0] = 0;
+        force MUV.\PoR.shift_reg1[1] = 0;
+        force MUV.\PoR.shift_reg1[2] = 0;
+        force MUV.\PoR.shift_reg1[3] = 0;
+        force MUV.\PoR.shift_reg1[4] = 0;
+        force MUV.\PoR.shift_reg1[5] = 0;
+        force MUV.\PoR.shift_reg1[6] = 0;
+        force MUV.\PoR.shift_reg1[7] = 0;
+        force MUV.\PoR.shift_reg1[8] = 0;
+        force MUV.\PoR.shift_reg1[9] = 0;
+        force MUV.\PoR.shift_reg1[10] = 0;
+        force MUV.\PoR.shift_reg1[11] = 0;
+        force MUV.\PoR.shift_reg1[12] = 0;
+        force MUV.\PoR.shift_reg1[13] = 0;
+        force MUV.\PoR.shift_reg1[14] = 0;
+        force MUV.\PoR.shift_reg1[15] = 0;
+
+        force MUV.\PoR.shift_reg2[0] = 0;
+        force MUV.\PoR.shift_reg2[1] = 0;
+        force MUV.\PoR.shift_reg2[2] = 0;
+        force MUV.\PoR.shift_reg2[3] = 0;
+        force MUV.\PoR.shift_reg2[4] = 0;
+        force MUV.\PoR.shift_reg2[5] = 0;
+        force MUV.\PoR.shift_reg2[6] = 0;
+        force MUV.\PoR.shift_reg2[7] = 0;
+        force MUV.\PoR.shift_reg2[8] = 0;
+        force MUV.\PoR.shift_reg2[9] = 0;
+        force MUV.\PoR.shift_reg2[10] = 0;
+        force MUV.\PoR.shift_reg2[11] = 0;
+        force MUV.\PoR.shift_reg2[12] = 0;
+        force MUV.\PoR.shift_reg2[13] = 0;
+        force MUV.\PoR.shift_reg2[14] = 0;
+        force MUV.\PoR.shift_reg2[15] = 0;
+
+        force MUV.\PoR.shift_reg3[0] = 0;
+        force MUV.\PoR.shift_reg3[1] = 0;
+        force MUV.\PoR.shift_reg3[2] = 0;
+        force MUV.\PoR.shift_reg3[3] = 0;
+        force MUV.\PoR.shift_reg3[4] = 0;
+        force MUV.\PoR.shift_reg3[5] = 0;
+        force MUV.\PoR.shift_reg3[6] = 0;
+        force MUV.\PoR.shift_reg3[7] = 0;
+        force MUV.\PoR.shift_reg3[8] = 0;
+        force MUV.\PoR.shift_reg3[9] = 0;
+        force MUV.\PoR.shift_reg3[10] = 0;
+        force MUV.\PoR.shift_reg3[11] = 0;
+        force MUV.\PoR.shift_reg3[12] = 0;
+        force MUV.\PoR.shift_reg3[13] = 0;
+        force MUV.\PoR.shift_reg3[14] = 0;
+        force MUV.\PoR.shift_reg3[15] = 0;
+        force MUV.\PoR.clk_div[1]  = 0;
+        force MUV.\PoR.clk_div[2]  = 0;
+        force MUV.\PoR.clk_div[3]  = 0;
+        force MUV.\PoR.clk_div[4]  = 0;
+        force MUV.\PoR.clk_div[5]  = 0;
+        force MUV.\PoR.clk_div[6]  = 0;
+        force MUV.\PoR.clk_div[7]  = 0;
+        force MUV.\PoR.clk_div[8]  = 0;
+        force MUV._016_ = 0;
+        force MUV._015_ = 0;
+        force MUV._017_ = 0;
+        #100;
+        release MUV.por_fb_in;
+        #100;
+        release MUV.\PoR.clk_div[1] ;
+        release MUV.\PoR.clk_div[2] ;
+        release MUV.\PoR.clk_div[3] ;
+        release MUV.\PoR.clk_div[4] ;
+        release MUV.\PoR.clk_div[5] ;
+        release MUV.\PoR.clk_div[6] ;
+        release MUV.\PoR.clk_div[7] ;
+        release MUV.\PoR.clk_div[8] ;
+        #2000;
+        release MUV.\PoR.shift_reg0[0] ;
+        release MUV.\PoR.shift_reg0[1] ;
+        release MUV.\PoR.shift_reg0[2] ;
+        release MUV.\PoR.shift_reg0[3] ;
+        release MUV.\PoR.shift_reg0[4] ;
+        release MUV.\PoR.shift_reg0[5] ;
+        release MUV.\PoR.shift_reg0[6] ;
+        release MUV.\PoR.shift_reg0[7] ;
+        release MUV.\PoR.shift_reg0[8] ;
+        release MUV.\PoR.shift_reg0[9] ;
+        release MUV.\PoR.shift_reg0[10] ;
+        release MUV.\PoR.shift_reg0[11] ;
+        release MUV.\PoR.shift_reg0[12] ;
+        release MUV.\PoR.shift_reg0[13] ;
+        release MUV.\PoR.shift_reg0[14] ;
+        release MUV.\PoR.shift_reg0[15] ;
+
+        release MUV.\PoR.shift_reg1[0] ;
+        release MUV.\PoR.shift_reg1[1] ;
+        release MUV.\PoR.shift_reg1[2] ;
+        release MUV.\PoR.shift_reg1[3] ;
+        release MUV.\PoR.shift_reg1[4] ;
+        release MUV.\PoR.shift_reg1[5] ;
+        release MUV.\PoR.shift_reg1[6] ;
+        release MUV.\PoR.shift_reg1[7] ;
+        release MUV.\PoR.shift_reg1[8] ;
+        release MUV.\PoR.shift_reg1[9] ;
+        release MUV.\PoR.shift_reg1[10] ;
+        release MUV.\PoR.shift_reg1[11] ;
+        release MUV.\PoR.shift_reg1[12] ;
+        release MUV.\PoR.shift_reg1[13] ;
+        release MUV.\PoR.shift_reg1[14] ;
+        release MUV.\PoR.shift_reg1[15] ;
+
+        release MUV.\PoR.shift_reg2[0] ;
+        release MUV.\PoR.shift_reg2[1] ;
+        release MUV.\PoR.shift_reg2[2] ;
+        release MUV.\PoR.shift_reg2[3] ;
+        release MUV.\PoR.shift_reg2[4] ;
+        release MUV.\PoR.shift_reg2[5] ;
+        release MUV.\PoR.shift_reg2[6] ;
+        release MUV.\PoR.shift_reg2[7] ;
+        release MUV.\PoR.shift_reg2[8] ;
+        release MUV.\PoR.shift_reg2[9] ;
+        release MUV.\PoR.shift_reg2[10] ;
+        release MUV.\PoR.shift_reg2[11] ;
+        release MUV.\PoR.shift_reg2[12] ;
+        release MUV.\PoR.shift_reg2[13] ;
+        release MUV.\PoR.shift_reg2[14] ;
+        release MUV.\PoR.shift_reg2[15] ;
+
+        release MUV.\PoR.shift_reg3[0] ;
+        release MUV.\PoR.shift_reg3[1] ;
+        release MUV.\PoR.shift_reg3[2] ;
+        release MUV.\PoR.shift_reg3[3] ;
+        release MUV.\PoR.shift_reg3[4] ;
+        release MUV.\PoR.shift_reg3[5] ;
+        release MUV.\PoR.shift_reg3[6] ;
+        release MUV.\PoR.shift_reg3[7] ;
+        release MUV.\PoR.shift_reg3[8] ;
+        release MUV.\PoR.shift_reg3[9] ;
+        release MUV.\PoR.shift_reg3[10] ;
+        release MUV.\PoR.shift_reg3[11] ;
+        release MUV.\PoR.shift_reg3[12] ;
+        release MUV.\PoR.shift_reg3[13] ;
+        release MUV.\PoR.shift_reg3[14] ;
+        release MUV.\PoR.shift_reg3[15] ;
+        wait(rst_n == 1);
+        #200;
+        release MUV._016_;
+        release MUV._015_;
+        release MUV._017_;
+    end
+    `endif // GL
     always@(posedge clk or negedge rst_n)
         if(!rst_n) begin
             sel_mux0 = 0;
