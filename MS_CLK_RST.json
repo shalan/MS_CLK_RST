@@ -99,6 +99,38 @@
             "dir": "input",
             "size": "1"
         },
+
+        {
+            "name": "xrst_n",
+            "port": "xrst_n",
+            "dir": "input",
+            "size": "1"
+        },
+        {
+            "name": "zero",
+            "port": "zero",
+            "dir": "input",
+            "size": "1"
+        },{
+            "name": "one",
+            "port": "one",
+            "dir": "input",
+            "size": "1"
+        },
+
+        {
+            "name": "por_fb_in",
+            "port": "por_fb_in",
+            "dir": "input",
+            "size": "1"
+        },
+        {
+            "name": "por_fb_out",
+            "port": "por_fb_out",
+            "dir": "output",
+            "size": "1"
+        },
+        
         {
             "name": "clk",
             "port": "clk",
