@@ -30,6 +30,11 @@
 module MS_CLK_RST_ahbl (
 	input	wire 		xclk0,
 	input	wire 		xclk1,
+	input	wire 		xrst_n,
+	input	wire 		zero,
+	input	wire 		one,
+	input	wire 		por_fb_in,
+	output	wire 		por_fb_out,
 	output	wire 		clk,
 	output	wire 		por_n,
 	output	wire 		rst_n,
