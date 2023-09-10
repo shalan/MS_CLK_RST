@@ -99,6 +99,38 @@
             "dir": "input",
             "size": "1"
         },
+
+        {
+            "name": "xrst_n",
+            "port": "xrst_n",
+            "dir": "input",
+            "size": "1"
+        },
+        {
+            "name": "zero",
+            "port": "zero",
+            "dir": "input",
+            "size": "1"
+        },{
+            "name": "one",
+            "port": "one",
+            "dir": "input",
+            "size": "1"
+        },
+
+        {
+            "name": "por_fb_in",
+            "port": "por_fb_in",
+            "dir": "input",
+            "size": "1"
+        },
+        {
+            "name": "por_fb_out",
+            "port": "por_fb_out",
+            "dir": "output",
+            "size": "1"
+        },
+        
         {
             "name": "clk",
             "port": "clk",
@@ -121,15 +153,16 @@
     "ports":[
       {"name": "xclk0", "size": "1", "dir":"input"},
       {"name": "xclk1", "size": "1", "dir":"input"},
+      {"name": "xrst_n", "size": "1", "dir":"input"},
       {"name": "sel_mux0", "size": "1", "dir":"input"},
       {"name": "sel_mux1", "size": "1", "dir":"input"},
       {"name": "sel_mux2", "size": "1", "dir":"input"},
       {"name": "sel_rosc", "size": "2", "dir":"input"},
-
       {"name": "clk_div", "size": "2", "dir":"input"},
+      {"name": "zero", "size": "1", "dir":"input"},
+      {"name": "one", "size": "1", "dir":"input"},
       {"name": "por_fb_in", "size": "1", "dir":"input"},
       {"name": "por_fb_out", "size": "1", "dir":"output"},
-
       {"name": "clk", "size": "1", "dir":"output"},
       {"name": "rst_n", "size": "1", "dir":"output"},
       {"name": "por_n", "size": "1", "dir":"output"}
