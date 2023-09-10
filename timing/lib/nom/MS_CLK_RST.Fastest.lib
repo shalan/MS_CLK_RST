@@ -48,22 +48,22 @@ library (MS_CLK_RST) {
     interface_timing : true;
     pin("clk") {
       direction : output;
-      capacitance : 0.0004;
+      capacitance : 0.0079;
       timing() {
         related_pin : "xclk0";
         timing_sense : positive_unate;
         timing_type : combinational;
 	cell_rise(template_1) {
-          values("2.99461,2.99990,3.01309,3.04737,3.13834,3.37958,4.02840");
+          values("4.18615,4.18823,4.19473,4.21343,4.27162,4.47727,5.22173");
 	}
 	rise_transition(template_1) {
-          values("0.01474,0.02133,0.03959,0.08924,0.22237,0.57473,1.50187");
+          values("0.01572,0.01739,0.02319,0.04394,0.12320,0.42072,1.50891");
 	}
 	cell_fall(template_1) {
-          values("3.40665,3.41044,3.41866,3.43695,3.48163,3.59942,3.91304");
+          values("4.84915,4.85105,4.85707,4.87258,4.91167,5.03151,5.46190");
 	}
 	fall_transition(template_1) {
-          values("0.01062,0.01384,0.02184,0.04231,0.09919,0.25261,0.66100");
+          values("0.01573,0.01708,0.02126,0.03350,0.07385,0.22843,0.81521");
 	}
       }
       timing() {
@@ -71,45 +71,45 @@ library (MS_CLK_RST) {
         timing_sense : positive_unate;
         timing_type : combinational;
 	cell_rise(template_1) {
-          values("2.86662,2.87191,2.88510,2.91938,3.01035,3.25159,3.90041");
+          values("4.03936,4.04144,4.04794,4.06665,4.12484,4.33049,5.07494");
 	}
 	rise_transition(template_1) {
-          values("0.01474,0.02133,0.03959,0.08924,0.22237,0.57473,1.50187");
+          values("0.01572,0.01739,0.02319,0.04394,0.12320,0.42072,1.50891");
 	}
 	cell_fall(template_1) {
-          values("3.22351,3.22730,3.23552,3.25381,3.29849,3.41628,3.72990");
+          values("4.65398,4.65589,4.66190,4.67742,4.71651,4.83634,5.26674");
 	}
 	fall_transition(template_1) {
-          values("0.01062,0.01384,0.02184,0.04231,0.09919,0.25261,0.66100");
+          values("0.01573,0.01708,0.02126,0.03350,0.07385,0.22843,0.81521");
 	}
       }
     }
     pin("one") {
       direction : input;
-      capacitance : 0.0030;
+      capacitance : 0.0035;
     }
     pin("por_fb_in") {
       direction : input;
-      capacitance : 0.0086;
+      capacitance : 0.0095;
     }
     pin("por_fb_out") {
       direction : output;
-      capacitance : 0.0081;
+      capacitance : 0.0079;
       timing() {
         related_pin : "por_fb_in";
         timing_sense : negative_unate;
         timing_type : combinational;
 	cell_rise(template_1) {
-          values("6.26564,6.26771,6.27421,6.29295,6.35115,6.55684,7.30128");
+          values("6.25736,6.25943,6.26593,6.28467,6.34287,6.54856,7.29300");
 	}
 	rise_transition(template_1) {
-          values("0.01571,0.01741,0.02317,0.04391,0.12320,0.42070,1.51049");
+          values("0.01571,0.01741,0.02317,0.04391,0.12320,0.42070,1.51042");
 	}
 	cell_fall(template_1) {
-          values("6.39205,6.39395,6.39997,6.41548,6.45457,6.57441,7.00480");
+          values("6.40419,6.40609,6.41211,6.42762,6.46671,6.58655,7.01694");
 	}
 	fall_transition(template_1) {
-          values("0.01573,0.01708,0.02126,0.03350,0.07385,0.22843,0.81520");
+          values("0.01573,0.01708,0.02126,0.03350,0.07385,0.22844,0.81527");
 	}
       }
     }
@@ -135,7 +135,7 @@ library (MS_CLK_RST) {
     }
     pin("xclk0") {
       direction : input;
-      capacitance : 0.0027;
+      capacitance : 0.0033;
     }
     pin("xclk1") {
       direction : input;
@@ -143,11 +143,11 @@ library (MS_CLK_RST) {
     }
     pin("xrst_n") {
       direction : input;
-      capacitance : 0.0032;
+      capacitance : 0.0030;
     }
     pin("zero") {
       direction : input;
-      capacitance : 0.0024;
+      capacitance : 0.0032;
     }
     bus("clk_div") {
       bus_type : clk_div;
@@ -155,11 +155,11 @@ library (MS_CLK_RST) {
       capacitance : 0.0000;
     pin("clk_div[1]") {
       direction : input;
-      capacitance : 0.0213;
+      capacitance : 0.0222;
     }
     pin("clk_div[0]") {
       direction : input;
-      capacitance : 0.0156;
+      capacitance : 0.0175;
     }
     }
     bus("sel_rosc") {
@@ -172,7 +172,7 @@ library (MS_CLK_RST) {
     }
     pin("sel_rosc[0]") {
       direction : input;
-      capacitance : 0.0031;
+      capacitance : 0.0028;
     }
     }
   }

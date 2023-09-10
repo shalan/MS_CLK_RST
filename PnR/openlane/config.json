@@ -19,11 +19,11 @@
     "FP_PDN_HPITCH": 30,
     "MAX_TRANSITION_CONSTRAINT": 1.5,
     "MAX_FANOUT_CONSTRAINT": 16,
-    "RUN_CTS": false,
+    "RUN_CTS": true,
     "PL_RESIZER_DESIGN_OPTIMIZATIONS": true,
     "PL_RESIZER_TIMING_OPTIMIZATIONS": true,
-    "GLB_RESIZER_DESIGN_OPTIMIZATIONS": false,
-    "GLB_RESIZER_TIMING_OPTIMIZATIONS": false,
+    "GLB_RESIZER_DESIGN_OPTIMIZATIONS": true,
+    "GLB_RESIZER_TIMING_OPTIMIZATIONS": true,
     "DESIGN_REPAIR_BUFFER_INPUT_PORTS": false,
     "PL_TARGET_DENSITY_PCT": 56,
     "MAGIC_DEF_LABELS": false,
@@ -37,7 +37,8 @@
     "GND_NETS": [
         "vssd1"
     ],
-    "BASE_SDC_FILE": "dir::base.sdc",
+    "PNR_SDC_FILE": "dir::base.sdc",
+    "SIGNOFF_SDC_FILE": "dir::signoff.sdc",
     "RUN_CVC": true,
-    "RSZ_DONT_TOUCH_RX": "dly|fb|clk_div|shift_reg|clkinv|clkdlybuf|cmp|rst_sync"
+    "RSZ_DONT_TOUCH_RX": "dly|fb|clk_div|shift_reg|clkinv|clkdlybuf|cmp|rst_sync|clkbuf"
 }

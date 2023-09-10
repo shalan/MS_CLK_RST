@@ -22,7 +22,7 @@ set_clock_groups \
    -group [get_clocks {CLK}]\
    -group [get_clocks {CLK_500kHz}]
 
-set_clock_uncertainty 0.250 [all_clocks] 
+set_clock_uncertainty 0.150 [all_clocks] 
 set_propagated_clock [all_clocks]
 
 ###############################################################################
