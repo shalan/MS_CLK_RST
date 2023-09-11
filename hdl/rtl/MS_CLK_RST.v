@@ -52,6 +52,8 @@ module MS_CLK_RST(
 
     wire    xclk;
 
+    wire clk_buf_in;
+
     clkmux_2x1 CLKMUX2 (
         .rst_n(rst_n),
         .clk0(xclk0), 
@@ -111,7 +113,18 @@ module MS_CLK_RST(
         .clk0(clk_8mhz), 
         .clk1(clk_mux1_div), 
         .sel(sel_mux0),
-        .clko(clk)
+        .clko(clk_buf_in)
+    );
+
+    (* keep *) sky130_fd_sc_hd__clkbuf_8 clkbuf (
+`ifdef USE_POWER_PINS
+        .VPWR(VPWR),
+        .VGND(VGND),
+        .VPB(VPWR),
+        .VNB(VGND),
+`endif
+        .A(clk_buf_in),
+        .X(clk)
     );
 
     clkmux_2x1 CLKMUX1 (
