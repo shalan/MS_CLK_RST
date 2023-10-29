@@ -59,8 +59,13 @@ module MS_CLK_RST_ahbl (
 	reg             last_HWRITE;
 	reg [1:0]       last_HTRANS;
 
-	always@ (posedge HCLK) begin
-		if(HREADY) begin
+	always@ (posedge HCLK or negedge HRESETn) begin
+		if (!HRESETn) begin
+			last_HSEL       <= 0;
+			last_HADDR      <= 0;
+			last_HWRITE     <= 0;
+			last_HTRANS     <= 0;
+		end else if (HREADY) begin
 			last_HSEL       <= HSEL;
 			last_HADDR      <= HADDR;
 			last_HWRITE     <= HWRITE;
@@ -82,8 +87,7 @@ module MS_CLK_RST_ahbl (
 	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
-	wire  		por_fb_in;
-	wire  		por_fb_out;
+
 	MS_CLK_RST inst_to_wrap (
 		.xclk0(xclk0),
 		.xclk1(xclk1),
@@ -106,9 +110,9 @@ module MS_CLK_RST_ahbl (
 	`AHB_REG(CLK_DIV_REG, 0, 2)
 	`AHB_REG(ROSC_DIV_REG, 0, 2)
 	assign	HRDATA = 
-			(last_HADDR == MUX_CTRL_REG_ADDR) ? MUX_CTRL_REG :
-			(last_HADDR == CLK_DIV_REG_ADDR) ? CLK_DIV_REG :
-			(last_HADDR == ROSC_DIV_REG_ADDR) ? ROSC_DIV_REG :
+			(last_HADDR[15:0] == MUX_CTRL_REG_ADDR) ? MUX_CTRL_REG :
+			(last_HADDR[15:0] == CLK_DIV_REG_ADDR) ? CLK_DIV_REG :
+			(last_HADDR[15:0] == ROSC_DIV_REG_ADDR) ? ROSC_DIV_REG :
 			32'hDEADBEEF;
 
 
