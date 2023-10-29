@@ -87,6 +87,7 @@ module MS_CLK_RST(
     // Clock Divider
     reg [2:0]   clkdiv = 0;
     wire        clk_mux1_div;
+    wire        clk_mux1;
     always@(posedge clk_mux1)
         clkdiv <= clkdiv + 1'b1;
 
@@ -105,7 +106,6 @@ module MS_CLK_RST(
     );
     // Clock Multiplexors
     wire    clk_mux0;
-    wire    clk_mux1;
     wire    clk_mux2;
     
     clkmux_2x1 CLKMUX0 (
