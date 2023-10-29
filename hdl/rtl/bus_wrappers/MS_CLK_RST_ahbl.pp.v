@@ -23,9 +23,9 @@
 `timescale			1ns/1ns
 `default_nettype	none
 
-`define		AHB_BLOCK(name, init)		always @(posedge HCLK or negedge HRESETn) if(~HRESETn) name <= init;
-`define		AHB_REG(name, init, size)	`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR[15:0]==``name``_ADDR)) name <= HWDATA[``size``-1:0];
-`define		AHB_ICR(size)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA[``size``-1:0]; else ICR_REG <= ``size``'d0;
+
+
+
 
 module MS_CLK_RST_ahbl (
 	input	wire 		xclk0,
@@ -101,9 +101,9 @@ module MS_CLK_RST_ahbl (
 		.por_n(por_n)
 	);
 
-	`AHB_REG(MUX_CTRL_REG, 0, 3)
-	`AHB_REG(CLK_DIV_REG, 0, 2)
-	`AHB_REG(ROSC_DIV_REG, 0, 2)
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) MUX_CTRL_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==MUX_CTRL_REG_ADDR)) MUX_CTRL_REG <= HWDATA[3-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CLK_DIV_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CLK_DIV_REG_ADDR)) CLK_DIV_REG <= HWDATA[2-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) ROSC_DIV_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==ROSC_DIV_REG_ADDR)) ROSC_DIV_REG <= HWDATA[2-1:0];
 	assign	HRDATA = 
 			(last_HADDR == MUX_CTRL_REG_ADDR) ? MUX_CTRL_REG :
 			(last_HADDR == CLK_DIV_REG_ADDR) ? CLK_DIV_REG :
