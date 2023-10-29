@@ -24,6 +24,10 @@
      - External Clock Monitor (fail-safe)
 */
 module MS_CLK_RST(
+     `ifdef GL 
+        input   wire        vccd1,
+        input   wire        vssd1,
+    `endif // GL
     input   wire        xclk0,     // External clock source 0
     input   wire        xclk1,     // External clock source 1
     input   wire        xrst_n,     // external reset
@@ -113,9 +117,9 @@ module MS_CLK_RST(
         .clk0(clk_8mhz), 
         .clk1(clk_mux1_div), 
         .sel(sel_mux0),
-        .clko(clk_buf_in)
+	.clko(`ifdef PnR clk_buf_in `else clk `endif)
     );
-
+`ifdef PnR
     (* keep *) sky130_fd_sc_hd__clkbuf_8 clkbuf (
 `ifdef USE_POWER_PINS
         .VPWR(VPWR),
@@ -126,7 +130,7 @@ module MS_CLK_RST(
         .A(clk_buf_in),
         .X(clk)
     );
-
+`endif // PnR
     clkmux_2x1 CLKMUX1 (
         .rst_n(rst_n),
         .clk0(clk_rosc), 
