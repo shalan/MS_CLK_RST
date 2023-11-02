@@ -1,5 +1,5 @@
 # MS_CLK_RST
-All digital Clock and Reset Manager
+All digital Clock and Reset Manager.
 
 ## Features
 - PoR Generation (all digital)
