@@ -2,10 +2,10 @@
     "DESIGN_NAME": "MS_CLK_RST",
     "DESIGN_IS_CORE": false,
     "VERILOG_FILES": [
-        "/home/hosni/ML-SOC/MS_CLK_RST/hdl/rtl/MS_CLK_RST.v",
-        "/home/hosni/ML-SOC/MS_CLK_RST/hdl/rtl/por_rosc.v",
-        "/home/hosni/ML-SOC/MS_CLK_RST/hdl/rtl/clkmux.v",
-        "/home/hosni/ML-SOC/MS_CLK_RST/hdl/rtl/rst_sync.v"
+        "dir::../../hdl/rtl/MS_CLK_RST.v",
+        "dir::../../hdl/rtl/por_rosc.v",
+        "dir::../../hdl/rtl/clkmux.v",
+        "dir::../../hdl/rtl/rst_sync.v"
     ],
     "RUN_LINTER": false,
     "SYNTH_READ_BLACKBOX_LIB": true,
@@ -14,7 +14,7 @@
     "CLOCK_PORT": "",
     "FP_SIZING": "relative",
     "FP_CORE_UTIL": 50,
-    "FP_PDN_AUTO_ADJUST": true, 
+    "FP_PDN_AUTO_ADJUST": true,
     "FP_PDN_VPITCH": 30,
     "FP_PDN_HPITCH": 30,
     "MAX_TRANSITION_CONSTRAINT": 1.5,
@@ -29,7 +29,7 @@
     "MAGIC_DEF_LABELS": false,
     "SYNTH_ABC_BUFFERING": false,
     "RUN_HEURISTIC_DIODE_INSERTION": true,
-    "HEURISTIC_ANTENNA_THRESHOLD": 110,    
+    "HEURISTIC_ANTENNA_THRESHOLD": 110,
     "GRT_REPAIR_ANTENNAS": false,
     "VDD_NETS": [
         "vccd1"
