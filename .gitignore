@@ -55,3 +55,5 @@ dkms.conf
 *.out
 *.vvp
 
+# PnR runs
+PnR/openlane/runs

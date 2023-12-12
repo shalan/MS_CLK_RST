@@ -2,7 +2,7 @@
 # Created by write_sdc
 # Tue Apr 25 10:55:41 2023
 ###############################################################################
-current_design por_rosc
+current_design MS_CLK_RST
 ###############################################################################
 # Timing Constraints
 ###############################################################################
@@ -14,7 +14,8 @@ set_false_path -from [get_ports {one}]
 set_false_path -from [get_ports {zero}]
 
 create_clock -name CLK -period 5 [get_pins PoR.ROSC_CLKBUF_1/X]
-create_clock -name CLK_500kHz -period 200 [get_pins _424_/Q]
+set CLK_500kHz_pin [get_pins -of_objects {PoR.clk_div[8]} -filter lib_pin_name==Q]
+create_clock -name CLK_500kHz -period 200 $CLK_500kHz_pin
 
 set_clock_groups \
    -name clock_group \
@@ -22,7 +23,7 @@ set_clock_groups \
    -group [get_clocks {CLK}]\
    -group [get_clocks {CLK_500kHz}]
 
-set_clock_uncertainty 0.250 [all_clocks] 
+set_clock_uncertainty 0.250 [all_clocks]
 set_propagated_clock [all_clocks]
 
 ###############################################################################
